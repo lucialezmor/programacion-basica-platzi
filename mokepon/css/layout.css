@@ -37,7 +37,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid green; */
+
     width: 100%;
     margin-bottom: var(--spacer);
 }
@@ -131,9 +131,10 @@ section {
 }
 
 #mensajes {
-}
-
-#reiniciar {
+    background-color: var(--color-beige);
+    color: var(--color-brand-dark);
+    border-radius: var(--radius);
+    padding: var(--spacer-small);
 }
 
 button {

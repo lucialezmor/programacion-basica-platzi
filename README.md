@@ -1,2 +1,3 @@
 # programacion-basica-platzi
-Course proyects
+
+Course proyects for https://platzi.com/cursos/programacion-basica/
