@@ -1,0 +1,164 @@
+html {
+    background-color: var(--color-brand-dark);
+    /* background-image: linear-gradient(
+        0deg,
+        hsl(34deg 100% 80%) 0%,
+        hsl(34deg 99% 81%) 10%,
+        hsl(35deg 99% 83%) 20%,
+        hsl(36deg 98% 84%) 30%,
+        hsl(36deg 97% 85%) 40%,
+        hsl(37deg 97% 87%) 50%,
+        hsl(37deg 97% 88%) 60%,
+        hsl(38deg 97% 90%) 70%,
+        hsl(39deg 97% 91%) 80%,
+        hsl(39deg 98% 93%) 90%,
+        hsl(40deg 100% 94%) 100%
+    ); */
+    color: var(--color-beige);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 calc(var(--spacer) * 4);
+    text-align: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid green; */
+    width: 100%;
+    margin-bottom: var(--spacer);
+}
+
+.title {
+    font-size: clamp(30px, 10vw, 80px);
+    font-family: var(--font-alt);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.5;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+}
+
+/* #seleccionar-mascota {
+} */
+
+.tarjetas {
+    display: flex;
+}
+
+.tarjetas input {
+    display: none;
+}
+
+.tarjetas-mokepon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: var(--color-brand);
+    background-image: linear-gradient(
+        0deg,
+        hsl(182deg 52% 26%) 0%,
+        hsl(182deg 52% 28%) 10%,
+        hsl(182deg 52% 29%) 20%,
+        hsl(182deg 52% 30%) 30%,
+        hsl(182deg 52% 32%) 40%,
+        hsl(182deg 53% 33%) 50%,
+        hsl(182deg 53% 35%) 60%,
+        hsl(182deg 53% 36%) 70%,
+        hsl(182deg 53% 38%) 80%,
+        hsl(182deg 53% 39%) 90%,
+        hsl(182deg 53% 41%) 100%
+    );
+    color: var(--button-color);
+    border-radius: var(--radius);
+    padding: calc(var(--spacer) * 1.5);
+    margin: var(--spacer) var(--spacer-small);
+    font-family: var(--font-alt);
+    max-width: 200px;
+
+    transition: var(--transition);
+}
+
+.tarjetas-mokepon:hover {
+    background-color: var(--color-brand-light);
+    background-image: linear-gradient(
+        0deg,
+        hsl(182deg 68% 56%) 0%,
+        hsl(182deg 64% 55%) 10%,
+        hsl(182deg 60% 53%) 20%,
+        hsl(182deg 56% 52%) 30%,
+        hsl(182deg 53% 50%) 40%,
+        hsl(182deg 53% 49%) 50%,
+        hsl(182deg 53% 47%) 60%,
+        hsl(182deg 53% 45%) 70%,
+        hsl(182deg 53% 44%) 80%,
+        hsl(182deg 53% 42%) 90%,
+        hsl(182deg 53% 41%) 100%
+    );
+    box-shadow: var(--shadow);
+    translate: 0 -2px;
+    cursor: pointer;
+}
+
+.tarjetas-mokepon img {
+    max-width: 100%;
+}
+
+#seleccionar-ataque {
+    text-align: center;
+}
+
+.botones-ataque {
+    display: flex;
+    justify-content: center;
+}
+
+#mensajes {
+}
+
+#reiniciar {
+}
+
+button {
+    display: flex;
+    line-height: 2;
+    border: none;
+    padding: var(--spacer-small) var(--spacer);
+    margin: var(--spacer);
+    border-radius: var(--radius);
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+button:hover {
+    background-color: var(--color-brand-light);
+    color: var(--color-black);
+    box-shadow: var(--shadow);
+    translate: 0 -2px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
