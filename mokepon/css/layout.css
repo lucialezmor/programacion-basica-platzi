@@ -65,6 +65,10 @@ section {
 .tarjetas input {
     display: none;
 }
+/*?*/
+.tarjetas input:checked + label {
+    background-color: red;
+}
 
 .tarjetas-mokepon {
     display: flex;
