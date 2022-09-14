@@ -24,12 +24,15 @@ const divEnemigo = document.getElementById("ataque-del-enemigo");
 
 const sectionMensajes = document.getElementById("mensajes");
 
+//array Mokepones (vacia ;) )
+let mokepones = [];
+
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
-// clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Es escalable, se le pueden agregar mas propiedades
+// clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Con constructor. Es escalable, se le pueden agregar mas propiedades
 class Mokepon {
     constructor(nombre, foto, vida) {
         this.nombre = nombre;
@@ -56,6 +59,12 @@ let ratigueya = new Mokepon(
 );
 //para probar objeto
 //console.log(hipodoge);
+
+//con push inyecto/empujo valores en la variable
+mokepones.push(hipodoge, capipepo, ratigueya);
+
+//testeo el array  mokepones
+// console.log(mokepones);
 
 function iniciarJuego() {
     seccionSeleccionarAtaque.style.display = "none";
