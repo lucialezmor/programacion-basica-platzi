@@ -38,10 +38,12 @@ class Mokepon {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
+        //seteamos el ataque pero no lo populamos con push
+        this.ataques = [];
     }
 }
 
-//objeto hecho con la clase Mokepon. los valores con comillas simples
+//objeto "instancia" hecho con la clase Mokepon. los valores con comillas simples
 let hipodoge = new Mokepon(
     "Hipodoge",
     "assets/mokepons_mokepon_hipodoge_attack.png",
@@ -58,7 +60,32 @@ let ratigueya = new Mokepon(
     5
 );
 //para probar objeto
-//console.log(hipodoge);
+// console.log(hipodoge);
+
+//objeto literal, solo para guardar informacion
+hipodoge.ataques.push(
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "🔥", id: "boton-fuego" },
+    { nombre: "🌱", id: "boton-tierra" }
+);
+
+capipepo.ataques.push(
+    { nombre: "🌱", id: "boton-tierra" },
+    { nombre: "🌱", id: "boton-tierra" },
+    { nombre: "🌱", id: "boton-tierra" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "🔥", id: "boton-fuego" }
+);
+
+ratigueya.ataques.push(
+    { nombre: "🔥", id: "boton-fuego" },
+    { nombre: "🔥", id: "boton-fuego" },
+    { nombre: "🔥", id: "boton-fuego" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "🌱", id: "boton-tierra" }
+);
 
 //con push inyecto/empujo valores en la variable
 mokepones.push(hipodoge, capipepo, ratigueya);
