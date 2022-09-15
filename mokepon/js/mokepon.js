@@ -150,17 +150,10 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-    let mascotaAleatoria = aleatorio(1, 3);
+    //-1 porque si no toam el primer nro del rango y sobra uno
+    let mascotaAleatoria = aleatorio(0, mokepones.length - 1);
 
-    if (mascotaAleatoria == 1) {
-        spanMascotaEnemigo.innerHTML = "Hipodoge";
-    } else if (mascotaAleatoria == 2) {
-        spanMascotaEnemigo.innerHTML = "Capipepo";
-    } else if (mascotaAleatoria == 3) {
-        spanMascotaEnemigo.innerHTML = "Ratigueya";
-    } else {
-        alert("el enemigo no tiene mascota");
-    }
+    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre;
 }
 
 function ataqueFuego() {
