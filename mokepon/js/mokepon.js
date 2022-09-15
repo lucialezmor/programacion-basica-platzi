@@ -9,9 +9,7 @@ const botonReiniciar = document.getElementById("boton-reiniciar");
 const seccionSeleccionarMascota = document.getElementById(
     "seleccionar-mascota"
 );
-const inputHipodoge = document.getElementById("hipodoge");
-const inputCapipepo = document.getElementById("capipepo");
-const inputRatigueya = document.getElementById("ratigueya");
+
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
@@ -32,6 +30,11 @@ let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
 let opcionDeMokepones;
+//las pego despues de la opcion de pokemones, xq antes no fueron creadas
+let inputHipodoge;
+let inputCapipepo;
+let inputRatigueya;
+
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -116,6 +119,10 @@ function iniciarJuego() {
                 >`;
         //va el += en lugar de solo = porque son mas de 1 objeto
         contenedorTarjetas.innerHTML += opcionDeMokepones;
+
+        inputHipodoge = document.getElementById("Hipodoge");
+        inputCapipepo = document.getElementById("Capipepo");
+        inputRatigueya = document.getElementById("Ratigueya");
     });
 
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
