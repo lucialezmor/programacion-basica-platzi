@@ -24,11 +24,14 @@ const divEnemigo = document.getElementById("ataque-del-enemigo");
 
 const sectionMensajes = document.getElementById("mensajes");
 
+const contenedorTarjetas = document.getElementById("contenedor-tarjetas");
+
 //array Mokepones (vacia ;) )
 let mokepones = [];
 
 let ataqueJugador;
 let ataqueEnemigo;
+let opcionDeMokepones;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -38,7 +41,7 @@ class Mokepon {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
-        //seteamos el ataque pero no lo populamos con push
+        //seteamos el ataque pero no lo populamos/poblamos con push
         this.ataques = [];
     }
 }
@@ -96,6 +99,25 @@ mokepones.push(hipodoge, capipepo, ratigueya);
 function iniciarJuego() {
     seccionSeleccionarAtaque.style.display = "none";
     seccionReiniciar.style.display = "none";
+    //poblar el html
+    mokepones.forEach((mokepon) => {
+        //x ej
+        //console.log(mokepon);
+        // console.log(mokepon.nombre);
+
+        //template literals, con la variable vacia que creamos arriba
+        opcionDeMokepones = `<input type="radio" name="mascota" id=${mokepon.nombre} />
+                <label class="tarjetas-mokepon" for=${mokepon.nombre}>
+                    <img
+                        src=${mokepon.foto}
+                        alt="${mokepon.nombre}"
+                    />
+                    <p>${mokepon.nombre}</p></label
+                >`;
+        //va el += en lugar de solo = porque son mas de 1 objeto
+        contenedorTarjetas.innerHTML += opcionDeMokepones;
+    });
+
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
     botonFuego.addEventListener("click", ataqueFuego);
     botonAgua.addEventListener("click", ataqueAgua);
