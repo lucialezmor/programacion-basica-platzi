@@ -25,7 +25,7 @@ const contenedorAtaques = document.getElementById("contenedor-ataques");
 //array Mokepones (vacia ;) )
 let mokepones = [];
 
-let ataqueJugador;
+let ataqueJugador = [];
 let ataqueEnemigo;
 let opcionDeMokepones;
 //las pego despues de la opcion de pokemones, xq antes no fueron creadas
@@ -40,6 +40,8 @@ let ataquesMokepon;
 let botonFuego;
 let botonAgua;
 let botonTierra;
+
+let botones = [];
 
 let vidasJugador = 3;
 let vidasEnemigo = 3;
@@ -169,16 +171,33 @@ function extraerAtaques(mascotaJugador) {
 
 function mostrarAtaques(ataques) {
     ataques.forEach((ataque) => {
-        ataquesMokepon = `<button id=${ataque.id}>${ataque.nombre}</button>`;
+        ataquesMokepon = `<button id=${ataque.id} class="BAtaque">${ataque.nombre}</button>`;
         contenedorAtaques.innerHTML += ataquesMokepon;
     });
     botonFuego = document.getElementById("boton-fuego");
     botonAgua = document.getElementById("boton-agua");
     botonTierra = document.getElementById("boton-tierra");
+    botones = document.querySelectorAll(".BAtaque");
+}
 
-    botonFuego.addEventListener("click", ataqueFuego);
-    botonAgua.addEventListener("click", ataqueAgua);
-    botonTierra.addEventListener("click", ataqueTierra);
+function secuenciaAtaque() {
+    botones.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            if (e.target.textContent === "🔥") {
+                ataqueJugador.push("FUEGO");
+                console.log(ataqueJugador);
+                boton.style.opacity = 0.5;
+            } else if (e.target.textContent === "💧") {
+                ataqueJugador.push("AGUA");
+                console.log(ataqueJugador);
+                boton.style.opacity = 0.5;
+            } else {
+                ataqueJugador.push("TIERRA");
+                console.log(ataqueJugador);
+                boton.style.opacity = 0.5;
+            }
+        }); //FOREACH
+    });
 }
 
 function seleccionarMascotaEnemigo() {
@@ -187,19 +206,7 @@ function seleccionarMascotaEnemigo() {
 
     spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre;
     // imgMascota;
-}
-
-function ataqueFuego() {
-    ataqueJugador = "FUEGO";
-    ataqueAleatorioEnemigo();
-}
-function ataqueAgua() {
-    ataqueJugador = "AGUA";
-    ataqueAleatorioEnemigo();
-}
-function ataqueTierra() {
-    ataqueJugador = "TIERRA";
-    ataqueAleatorioEnemigo();
+    secuenciaAtaque();
 }
 
 function ataqueAleatorioEnemigo() {
