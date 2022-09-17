@@ -65,6 +65,12 @@ class Mokepon {
         this.vida = vida;
         //seteamos el ataque pero no lo populamos/poblamos con push
         this.ataques = [];
+        this.x = 20;
+        this.y = 30;
+        this.ancho = 80;
+        this.alto = 80;
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
     }
 }
 
@@ -155,8 +161,10 @@ function seleccionarMascotaJugador() {
     seccionSeleccionarMascota.style.display = "none";
 
     sectionVerMapa.style.display = "flex";
-
-    lienzo.fillRect(5, 15, 20, 40);
+    // let imagenCapipepo = new Image();
+    // imagenCapipepo.src = capipepo.foto;
+    //(x, y, ancho, alto)
+    // lienzo.fillRect(5, 15, 20, 40);
 
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -319,5 +327,63 @@ function reiniciarJuego() {
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+function pintarPersonaje() {
+    //cleanrect limpia parte del canvas, hay que indicarle que parte del canvas limpiar
+    lienzo.clearRect(0, 0, mapa.width, mapa.height);
+    lienzo.drawImage(
+        capipepo.mapaFoto,
+        capipepo.x,
+        capipepo.y,
+        capipepo.ancho,
+        capipepo.alto
+    );
+}
+
+function moveUp() {
+    //actualizar la posicion de "x" del personaje
+    capipepo.y = capipepo.y - 5;
+    pintarPersonaje();
+}
+function moveRight() {
+    //actualizar la posicion de "x" del personaje
+    capipepo.x = capipepo.x + 5;
+    pintarPersonaje();
+}
+function moveDown() {
+    //actualizar la posicion de "x" del personaje
+    capipepo.y = capipepo.y + 5;
+    pintarPersonaje();
+}
+function moveLeft() {
+    //actualizar la posicion de "x" del personaje
+    capipepo.x = capipepo.x - 5;
+    pintarPersonaje();
+}
+
+//otra opcion con switch/case
+
+// const controls = document.querySelectorAll('.button-control')
+
+// controls.forEach((control)=>{
+//   control.addEventListener('click',()=>moverCapipepo(control.id))
+// })
+
+// function moverCapipepo(direction) {
+
+//   switch(direction){
+//     case 'up':
+//       capipepo.y = capipepo.y - 5
+//       break;
+//     case 'left':
+//       capipepo.x = capipepo.x - 5
+//       break;
+//     case 'down':
+//       capipepo.y = capipepo.y + 5
+//       break;
+//     case 'right':
+//       capipepo.x = capipepo.x + 5
+//       break;
+//   }
 
 window.addEventListener("load", iniciarJuego);
