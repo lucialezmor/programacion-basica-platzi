@@ -56,6 +56,7 @@ let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 let lienzo = mapa.getContext("2d");
+let intervalo;
 
 // clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Con constructor. Es escalable, se le pueden agregar mas propiedades
 class Mokepon {
@@ -71,6 +72,8 @@ class Mokepon {
         this.alto = 80;
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 
@@ -161,6 +164,7 @@ function seleccionarMascotaJugador() {
     seccionSeleccionarMascota.style.display = "none";
 
     sectionVerMapa.style.display = "flex";
+    intervalo = setInterval(pintarPersonaje, 50);
     // let imagenCapipepo = new Image();
     // imagenCapipepo.src = capipepo.foto;
     //(x, y, ancho, alto)
@@ -329,6 +333,8 @@ function aleatorio(min, max) {
 }
 
 function pintarPersonaje() {
+    capipepo.x = capipepo.x + capipepo.velocidadX;
+    capipepo.y = capipepo.y + capipepo.velocidadY;
     //cleanrect limpia parte del canvas, hay que indicarle que parte del canvas limpiar
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(
@@ -342,23 +348,28 @@ function pintarPersonaje() {
 
 function moveUp() {
     //actualizar la posicion de "x" del personaje
-    capipepo.y = capipepo.y - 5;
+    capipepo.velocidadY = -5;
     pintarPersonaje();
 }
 function moveRight() {
     //actualizar la posicion de "x" del personaje
-    capipepo.x = capipepo.x + 5;
+    capipepo.velocidadX = +5;
     pintarPersonaje();
 }
 function moveDown() {
     //actualizar la posicion de "x" del personaje
-    capipepo.y = capipepo.y + 5;
+    capipepo.velocidadY = +5;
     pintarPersonaje();
 }
 function moveLeft() {
     //actualizar la posicion de "x" del personaje
-    capipepo.x = capipepo.x - 5;
+    capipepo.velocidadX = -5;
     pintarPersonaje();
+}
+
+function detenerMovimiento() {
+    capipepo.velocidadX = 0;
+    capipepo.velocidadY = 0;
 }
 
 //otra opcion con switch/case

@@ -7,3 +7,9 @@
 #mapa {
     border: 1px solid var(--color-beige);
 }
+
+#botones-mover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
