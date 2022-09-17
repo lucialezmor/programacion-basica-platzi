@@ -191,15 +191,15 @@ function secuenciaAtaque() {
             if (e.target.textContent === "🔥") {
                 ataqueJugador.push("FUEGO");
                 console.log(ataqueJugador);
-                boton.style.opacity = 0.5;
+                boton.disabled = true;
             } else if (e.target.textContent === "💧") {
                 ataqueJugador.push("AGUA");
                 console.log(ataqueJugador);
-                boton.style.opacity = 0.5;
+                boton.disabled = true;
             } else {
                 ataqueJugador.push("TIERRA");
                 console.log(ataqueJugador);
-                boton.style.opacity = 0.5;
+                boton.disabled = true;
             }
             ataqueAleatorioEnemigo();
         }); //FOREACH
@@ -323,9 +323,9 @@ function crearMensajeFinal(resultadoFinal) {
     let parrafo = document.createElement("p");
 
     sectionMensajes.innerHTML = resultadoFinal;
-    botonFuego.disabled = true;
-    botonAgua.disabled = true;
-    botonTierra.disabled = true;
+    // botonFuego.disabled = true;
+    // botonAgua.disabled = true;
+    // botonTierra.disabled = true;
     seccionReiniciar.style.display = "flex";
 }
 
