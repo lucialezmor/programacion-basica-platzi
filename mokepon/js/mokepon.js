@@ -22,6 +22,10 @@ const contenedorTarjetas = document.getElementById("contenedor-tarjetas");
 
 const contenedorAtaques = document.getElementById("contenedor-ataques");
 
+const sectionVerMapa = document.getElementById("ver-mapa");
+
+const mapa = document.getElementById("mapa");
+
 //array Mokepones (vacia ;) )
 let mokepones = [];
 
@@ -50,6 +54,8 @@ let victoriasEnemigo = 0;
 
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+
+let lienzo = mapa.getContext("2d");
 
 // clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Con constructor. Es escalable, se le pueden agregar mas propiedades
 class Mokepon {
@@ -115,6 +121,7 @@ mokepones.push(hipodoge, capipepo, ratigueya);
 function iniciarJuego() {
     seccionSeleccionarAtaque.style.display = "none";
     seccionReiniciar.style.display = "none";
+    sectionVerMapa.style.display = "none";
     //poblar el html
     mokepones.forEach((mokepon) => {
         //x ej
@@ -144,8 +151,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-    seccionSeleccionarAtaque.style.display = "flex";
+    // seccionSeleccionarAtaque.style.display = "flex";
     seccionSeleccionarMascota.style.display = "none";
+
+    sectionVerMapa.style.display = "flex";
+
+    lienzo.fillRect(5, 15, 20, 40);
 
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id;

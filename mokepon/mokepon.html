@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" href="style.css" />
     </head>
+
     <body>
         <section id="section-title">
             <h1 class="title">Mokepon</h1>
@@ -18,10 +19,18 @@
             <div id="contenedor-tarjetas" class="tarjetas"></div>
             <button id="boton-mascota">Seleccionar mascota</button>
         </section>
+
         <section id="mensajes"><p id="resultados">Mucha suerte!</p></section>
+
         <section id="reiniciar">
             <button id="boton-reiniciar">Reiniciar</button>
         </section>
+
+        <section id="ver-mapa">
+            <h2 class="subtitle">Recorre el mapa con tu Mokepon:</h2>
+            <canvas id="mapa"> </canvas>
+        </section>
+
         <section id="seleccionar-ataque">
             <h2 class="subtitle">Elige tu ataque:</h2>
             <div id="contenedor-ataques" class="botones-ataque"></div>
@@ -38,6 +47,7 @@
                 </div>
             </div>
         </section>
+
         <script src="js/mokepon.js"></script>
     </body>
 </html>
