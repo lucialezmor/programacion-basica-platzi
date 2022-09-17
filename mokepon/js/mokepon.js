@@ -202,7 +202,7 @@ function secuenciaAtaque() {
                 boton.disabled = true;
             }
             ataqueAleatorioEnemigo();
-        }); //FOREACH
+        });
     });
 }
 
@@ -216,16 +216,6 @@ function seleccionarMascotaEnemigo() {
     secuenciaAtaque();
     // mostrarMascotas();
 }
-
-// function mostrarMascotas() {
-//     let mokeponJugador = `<p>${mokepon.nombre}</p>
-//     <img src=${mokepon.foto} alt=${mokepon.nombre}`;
-//     divJugador.innerHTML = mokeponJugador;
-
-//     let mokeponEnemigo = `<p>${mokepon.nombre}</p>
-//     <img src=${mokepon.foto} alt=${mokepon.nombre}`;
-//     divEnemigo.innerHTML = mokeponEnemigo;
-// }
 
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length - 1);
@@ -290,22 +280,6 @@ function combate() {
         }
     }
 
-    // if (ataqueEnemigo == ataqueJugador) {
-    //     crearMensaje("EMPATE");
-    // } else if (
-    //     (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") ||
-    //     (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") ||
-    //     (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA")
-    // ) {
-    //     crearMensaje("GANASTE");
-    //     vidasEnemigo--;
-    //     spanVidasEnemigo.innerHTML = vidasEnemigo;
-    // } else {
-    //     crearMensaje("PERDISTE");
-    //     vidasJugador--;
-    //     spanVidasJugador.innerHTML = vidasJugador;
-    // }
-
     revisarVictorias();
 }
 
@@ -323,9 +297,7 @@ function crearMensajeFinal(resultadoFinal) {
     let parrafo = document.createElement("p");
 
     sectionMensajes.innerHTML = resultadoFinal;
-    // botonFuego.disabled = true;
-    // botonAgua.disabled = true;
-    // botonTierra.disabled = true;
+
     seccionReiniciar.style.display = "flex";
 }
 
@@ -338,7 +310,3 @@ function aleatorio(min, max) {
 }
 
 window.addEventListener("load", iniciarJuego);
-
-//AREAS DE OPORTUNIDAD PARA MEJORAR (clase 60, Diego de Granda):
-//EN ataqueAleatorioEnemigo() >>> en lugar de hardcodear, en base al array ataqueAleatorio, hacer algo similar a lo del ataque jugador y la foma en que se va imprimiendo los ataques. Los ataques ya estan en ataqueAleatorioEnemigo. Extraer los ataques de ahi y usarlos para el enemigo
-//añadir 3 nuevos personajes. generar los nuevos objetos. que cada uno tenga un tipo. agregar la prop tipo a la clase constructora. validar el tipo de personaje a ver si es mas fuerte "que tenga un ataque mas"
