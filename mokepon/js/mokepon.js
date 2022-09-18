@@ -69,8 +69,8 @@ class Mokepon {
         this.vida = vida;
         //seteamos el ataque pero no lo populamos/poblamos con push
         this.ataques = [];
-        this.x = x;
-        this.y = y;
+        this.x = x; //aleatorio(0,320)
+        this.y = y; //aleatorio(0,240)
         this.ancho = 40;
         this.alto = 40;
         this.mapaFoto = new Image();
@@ -375,6 +375,15 @@ function pintarCanvas() {
     hipodogeEnemigo.pintarMokepon();
     capipepoEnemigo.pintarMokepon();
     ratigueyaEnemigo.pintarMokepon();
+
+    if (
+        mascotaJugadorObjeto.velocidadX !== 0 ||
+        mascotaJugadorObjeto.velocidadY !== 0
+    ) {
+        revisarColision(hipodogeEnemigo);
+        revisarColision(capipepoEnemigo);
+        revisarColision(ratigueyaEnemigo);
+    }
 }
 
 function moveUp() {
@@ -483,6 +492,29 @@ function obtenerObjetoMascota() {
             return mokepones[i];
         }
     }
+}
+
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y;
+    const abajoEnemigo = enemigo.y + enemigo.alto;
+    const derechaEnemigo = enemigo.x + enemigo.ancho;
+    const izquierdaEnemigo = enemigo.x;
+
+    const arribaMascota = mascotaJugadorObjeto.y;
+    const abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto;
+    const derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho;
+    const izquierdaMascota = mascotaJugadorObjeto.x;
+
+    if (
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) {
+        return;
+    }
+    detenerMovimiento();
+    alert("hay colision con " + enemigo.nombre);
 }
 
 window.addEventListener("load", iniciarJuego);
