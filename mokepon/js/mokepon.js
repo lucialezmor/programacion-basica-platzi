@@ -63,20 +63,24 @@ mapaBackground.src = "assets/mokemap.png";
 
 // clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Con constructor. Es escalable, se le pueden agregar mas propiedades
 class Mokepon {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, fotoMapa, x = 10, y = 10) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         //seteamos el ataque pero no lo populamos/poblamos con push
         this.ataques = [];
-        this.x = 20;
-        this.y = 30;
-        this.ancho = 80;
-        this.alto = 80;
+        this.x = x;
+        this.y = y;
+        this.ancho = 40;
+        this.alto = 40;
         this.mapaFoto = new Image();
-        this.mapaFoto.src = foto;
+        this.mapaFoto.src = fotoMapa;
         this.velocidadX = 0;
         this.velocidadY = 0;
+    }
+
+    pintarMokepon() {
+        lienzo.drawImage(this.mapaFoto, this.x, this.y, this.ancho, this.alto);
     }
 }
 
@@ -84,18 +88,47 @@ class Mokepon {
 let hipodoge = new Mokepon(
     "Hipodoge",
     "assets/mokepons_mokepon_hipodoge_attack.png",
-    5
+    5,
+    "assets/hipodoge.png"
 );
 let capipepo = new Mokepon(
     "Capipepo",
     "assets/mokepons_mokepon_capipepo_attack.png",
-    5
+    5,
+    "assets/capipepo.png"
 );
 let ratigueya = new Mokepon(
     "Ratigueya",
     "assets/mokepons_mokepon_ratigueya_attack.png",
-    5
+    5,
+    "assets/ratigueya.png"
 );
+
+let hipodogeEnemigo = new Mokepon(
+    "Hipodoge",
+    "assets/mokepons_mokepon_hipodoge_attack.png",
+    5,
+    "assets/hipodoge.png",
+    80,
+    120
+);
+let capipepoEnemigo = new Mokepon(
+    "Capipepo",
+    "assets/mokepons_mokepon_capipepo_attack.png",
+    5,
+    "assets/capipepo.png",
+    150,
+    95
+);
+let ratigueyaEnemigo = new Mokepon(
+    "Ratigueya",
+    "assets/mokepons_mokepon_ratigueya_attack.png",
+    5,
+    "assets/ratigueya.png",
+    200,
+    190
+);
+
 //para probar objeto
 // console.log(hipodoge);
 
@@ -338,13 +371,10 @@ function pintarCanvas() {
     //cleanrect limpia parte del canvas, hay que indicarle que parte del canvas limpiar
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x,
-        mascotaJugadorObjeto.y,
-        mascotaJugadorObjeto.ancho,
-        mascotaJugadorObjeto.alto
-    );
+    mascotaJugadorObjeto.pintarMokepon();
+    hipodogeEnemigo.pintarMokepon();
+    capipepoEnemigo.pintarMokepon();
+    ratigueyaEnemigo.pintarMokepon();
 }
 
 function moveUp() {
