@@ -164,11 +164,8 @@ function seleccionarMascotaJugador() {
     seccionSeleccionarMascota.style.display = "none";
 
     sectionVerMapa.style.display = "flex";
-    intervalo = setInterval(pintarPersonaje, 50);
-    // let imagenCapipepo = new Image();
-    // imagenCapipepo.src = capipepo.foto;
-    //(x, y, ancho, alto)
-    // lienzo.fillRect(5, 15, 20, 40);
+
+    iniciarMapa();
 
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -367,11 +364,6 @@ function moveLeft() {
     pintarPersonaje();
 }
 
-function detenerMovimiento() {
-    capipepo.velocidadX = 0;
-    capipepo.velocidadY = 0;
-}
-
 //otra opcion con switch/case
 
 // const controls = document.querySelectorAll('.button-control')
@@ -396,5 +388,42 @@ function detenerMovimiento() {
 //       capipepo.x = capipepo.x + 5
 //       break;
 //   }
+
+function detenerMovimiento() {
+    capipepo.velocidadX = 0;
+    capipepo.velocidadY = 0;
+}
+
+function sePresionoUnaTecla(event) {
+    // console.log(event.key);
+    switch (event.key) {
+        case "ArrowUp":
+            moveUp();
+            break;
+        case "ArrowRight":
+            moveRight();
+            break;
+        case "ArrowDown":
+            moveDown();
+            break;
+        case "ArrowLeft":
+            moveLeft();
+            break;
+
+        default:
+            break;
+    }
+}
+
+function iniciarMapa() {
+    intervalo = setInterval(pintarPersonaje, 50);
+    // let imagenCapipepo = new Image();
+    // imagenCapipepo.src = capipepo.foto;
+    //(x, y, ancho, alto)
+    // lienzo.fillRect(5, 15, 20, 40);
+
+    window.addEventListener("keydown", sePresionoUnaTecla);
+    window.addEventListener("keyup", detenerMovimiento);
+}
 
 window.addEventListener("load", iniciarJuego);
