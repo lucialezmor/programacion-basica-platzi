@@ -57,6 +57,8 @@ let vidasEnemigo = 3;
 
 let lienzo = mapa.getContext("2d");
 let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = "assets/mokemap.png";
 
 // clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Con constructor. Es escalable, se le pueden agregar mas propiedades
 class Mokepon {
@@ -329,11 +331,12 @@ function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function pintarPersonaje() {
+function pintarCanvas() {
     capipepo.x = capipepo.x + capipepo.velocidadX;
     capipepo.y = capipepo.y + capipepo.velocidadY;
     //cleanrect limpia parte del canvas, hay que indicarle que parte del canvas limpiar
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
+    lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
     lienzo.drawImage(
         capipepo.mapaFoto,
         capipepo.x,
@@ -346,22 +349,22 @@ function pintarPersonaje() {
 function moveUp() {
     //actualizar la posicion de "x" del personaje
     capipepo.velocidadY = -5;
-    pintarPersonaje();
+    pintarCanvas();
 }
 function moveRight() {
     //actualizar la posicion de "x" del personaje
     capipepo.velocidadX = +5;
-    pintarPersonaje();
+    pintarCanvas();
 }
 function moveDown() {
     //actualizar la posicion de "x" del personaje
     capipepo.velocidadY = +5;
-    pintarPersonaje();
+    pintarCanvas();
 }
 function moveLeft() {
     //actualizar la posicion de "x" del personaje
     capipepo.velocidadX = -5;
-    pintarPersonaje();
+    pintarCanvas();
 }
 
 //otra opcion con switch/case
@@ -410,13 +413,29 @@ function sePresionoUnaTecla(event) {
             moveLeft();
             break;
 
+        case "w":
+            moveUp();
+            break;
+        case "d":
+            moveRight();
+            break;
+        case "s":
+            moveDown();
+            break;
+        case "a":
+            moveLeft();
+            break;
+
         default:
             break;
     }
 }
 
 function iniciarMapa() {
-    intervalo = setInterval(pintarPersonaje, 50);
+    mapa.width = 320;
+    mapa.height = 240;
+
+    intervalo = setInterval(pintarCanvas, 50);
     // let imagenCapipepo = new Image();
     // imagenCapipepo.src = capipepo.foto;
     //(x, y, ancho, alto)
