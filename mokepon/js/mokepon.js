@@ -60,19 +60,32 @@ let lienzo = mapa.getContext("2d");
 let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = "assets/mokemap.png";
+let alturaQueBuscamos;
+let anchoDelMapa = window.innerWidth - 20;
+const anchoMaximoDelMapa = 350;
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20;
+}
+
+alturaQueBuscamos = anchoDelMapa * (600 / 800);
+
+mapa.width = anchoDelMapa;
+mapa.height = alturaQueBuscamos;
 
 // clase, va con mayuscula, es el "plano" para el objeto (el personaje en este caso). Con constructor. Es escalable, se le pueden agregar mas propiedades
 class Mokepon {
-    constructor(nombre, foto, vida, fotoMapa, x = 10, y = 10) {
+    constructor(nombre, foto, vida, fotoMapa) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         //seteamos el ataque pero no lo populamos/poblamos con push
         this.ataques = [];
-        this.x = x; //aleatorio(0,320)
-        this.y = y; //aleatorio(0,240)
         this.ancho = 40;
         this.alto = 40;
+        this.x = aleatorio(0, mapa.width - this.ancho); //aleatorio(0,320)
+        this.y = aleatorio(0, mapa.height - this.alto); //aleatorio(0,240)
+
         this.mapaFoto = new Image();
         this.mapaFoto.src = fotoMapa;
         this.velocidadX = 0;
@@ -108,25 +121,19 @@ let hipodogeEnemigo = new Mokepon(
     "Hipodoge",
     "assets/mokepons_mokepon_hipodoge_attack.png",
     5,
-    "assets/hipodoge.png",
-    80,
-    120
+    "assets/hipodoge.png"
 );
 let capipepoEnemigo = new Mokepon(
     "Capipepo",
     "assets/mokepons_mokepon_capipepo_attack.png",
     5,
-    "assets/capipepo.png",
-    150,
-    95
+    "assets/capipepo.png"
 );
 let ratigueyaEnemigo = new Mokepon(
     "Ratigueya",
     "assets/mokepons_mokepon_ratigueya_attack.png",
     5,
-    "assets/ratigueya.png",
-    200,
-    190
+    "assets/ratigueya.png"
 );
 
 //para probar objeto
@@ -266,15 +273,15 @@ function secuenciaAtaque() {
         boton.addEventListener("click", (e) => {
             if (e.target.textContent === "🔥") {
                 ataqueJugador.push("FUEGO");
-                console.log(ataqueJugador);
+                // console.log(ataqueJugador);
                 boton.disabled = true;
             } else if (e.target.textContent === "💧") {
                 ataqueJugador.push("AGUA");
-                console.log(ataqueJugador);
+                // console.log(ataqueJugador);
                 boton.disabled = true;
             } else {
                 ataqueJugador.push("TIERRA");
-                console.log(ataqueJugador);
+                // console.log(ataqueJugador);
                 boton.disabled = true;
             }
             ataqueAleatorioEnemigo();
@@ -305,7 +312,7 @@ function ataqueAleatorioEnemigo() {
     } else {
         ataqueEnemigo.push("TIERRA");
     }
-    console.log(ataqueEnemigo);
+    // console.log(ataqueEnemigo);
     iniciarPelea();
 }
 
@@ -496,8 +503,8 @@ function sePresionoUnaTecla(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 320;
-    mapa.height = 240;
+    // mapa.width = 320;
+    // mapa.height = 240;
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
     // console.log(mascotaJugadorObjeto, mascotaJugador);
     intervalo = setInterval(pintarCanvas, 50);
