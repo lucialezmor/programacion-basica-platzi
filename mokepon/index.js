@@ -6,7 +6,7 @@
 // puedo crear una aplicacion que vaa representar a nuestro servidor
 const express = require("express");
 
-//b)almacena nuestra aplicacion. instancia del servidor que voy a estar utilizando
+//b)crea/almacena nuestra aplicacion. instancia del servidor que voy a estar utilizando
 const app = express();
 
 //url, metodo
@@ -21,8 +21,3 @@ app.listen(8080, () => {
 });
 /* fin de las minimas 3 cosas*/
 /*ctrl c para apagar el servidor*/
-
-//url, metodo
-app.get("/", (req, res) => {
-    res.send("hola");
-});
