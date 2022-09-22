@@ -9,9 +9,33 @@ const express = require("express");
 //b)crea/almacena nuestra aplicacion. instancia del servidor que voy a estar utilizando
 const app = express();
 
-//url, metodo
-app.get("/", (req, res) => {
-    res.send("hola");
+//e)lista (vacia) de jugadores que se vayan ir uniendo al servidor
+const jugadores = [];
+
+//f)//crear una clase
+class Jugador {
+    //en su constructor va a recibir un id
+    constructor(id) {
+        this.id = id;
+    }
+}
+
+//d)url, metodo. primero "/", desp cambio el endpoint a "/unirse"
+app.get("/unirse", (req, res) => {
+    //hay librerias para usar en vez de math
+    const id = `${Math.random()}`;
+
+    const jugador = new Jugador(id);
+
+    //agregarlo a la lista de jug
+    jugadores.push(jugador);
+
+    //cabecera donde permitimos que haga llamadas sarasa. * tipo comodin (inseguro)
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
+    res.send(id);
+    //res.send("hola");
+    //cada vez que se agregue un jugados, elo frontend llama a un servicio del backend para que + el nro de jugadores, que se registre ese jug y le devuelva su id
 });
 
 //que escuche las peticiones de nuestros clientes por medio de un puerto. listen nos permite agregar la capacidad de iniciar el servidor
@@ -20,4 +44,4 @@ app.listen(8080, () => {
     console.log("el servidor funcionando");
 });
 /* fin de las minimas 3 cosas*/
-/*ctrl c para apagar el servidor*/
+/*ctrl c para apagar el servidor. Apagarlo para hacer las cosas/editarlo*/
