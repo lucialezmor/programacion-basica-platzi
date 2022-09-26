@@ -5,9 +5,15 @@
 //a) importar la libreria - con requiere podemos usar lo que instalamos con npm. ya esta importada destro de mi proyecto
 // puedo crear una aplicacion que vaa representar a nuestro servidor
 const express = require("express");
+const cors = require("cors");
 
 //b)crea/almacena nuestra aplicacion. instancia del servidor que voy a estar utilizando
 const app = express();
+
+//decirle a express que use cors
+app.use(cors());
+//como vamos a trabajar con peticiones tipo POST pare recibir datos de los users, activar peticiones que soporten json como parte de su juego. json y cors son funciones, por eso el ()
+app.use(express.json());
 
 //e)lista (vacia) de jugadores que se vayan ir uniendo al servidor
 const jugadores = [];
@@ -17,6 +23,16 @@ class Jugador {
     //en su constructor va a recibir un id
     constructor(id) {
         this.id = id;
+    }
+
+    asignarMokepon(mokepon) {
+        this.mokepon = mokepon;
+    }
+}
+
+class Mokepon {
+    constructor(nombre) {
+        this.nombre = nombre;
     }
 }
 
@@ -30,12 +46,32 @@ app.get("/unirse", (req, res) => {
     //agregarlo a la lista de jug
     jugadores.push(jugador);
 
-    //cabecera donde permitimos que haga llamadas sarasa. * tipo comodin (inseguro)
+    //cabecera donde permitimos que haga llamadas sarasa. * tipo comodin (inseguro). Lo borro porque no es suficiente. hay que instalar la libreria CORS  8npm install cors)
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     res.send(id);
     //res.send("hola");
     //cada vez que se agregue un jugados, elo frontend llama a un servicio del backend para que + el nro de jugadores, que se registre ese jug y le devuelva su id
+});
+
+//creamos un nuevo servicio (aparte de unirse). Buena practica usar un servicio diferente para cada cosa. Los ":" son la forma de poner una variable  en express
+app.post("/mokepon/:jugadorId", (req, res) => {
+    //accedo a la variable que se envio en la url
+    const jugadorId = req.params.jugadorId || "";
+    const nombre = req.body.mokepon || "";
+    const mokepon = new Mokepon(nombre);
+
+    const jugadorIndex = jugadores.findIndex(
+        (jugador) => jugadorId === jugador.id
+    );
+
+    if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].asignarMokepon(mokepon);
+    }
+
+    console.log(jugadores);
+    console.log(jugadorId);
+    res.end();
 });
 
 //que escuche las peticiones de nuestros clientes por medio de un puerto. listen nos permite agregar la capacidad de iniciar el servidor
