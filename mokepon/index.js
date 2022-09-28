@@ -93,7 +93,11 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
         jugadores[jugadorIndex].actualizarPosicion(x, y);
     }
 
-    res.end();
+    const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id);
+    //en express solo puedes devolver json, no una lista. devolvemos un json que contenga esta lista
+    res.send({
+        enemigos,
+    });
 });
 
 //que escuche las peticiones de nuestros clientes por medio de un puerto. listen nos permite agregar la capacidad de iniciar el servidor
