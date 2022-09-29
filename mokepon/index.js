@@ -33,6 +33,10 @@ class Jugador {
         this.x = x;
         this.y = y;
     }
+
+    asignarAtaques(ataques) {
+        this.ataques = ataques;
+    }
 }
 
 class Mokepon {
@@ -98,6 +102,23 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
     res.send({
         enemigos,
     });
+});
+
+//mandar atauqes al servidor
+app.post("http://localhost:8080/mokepon/:jugadorId/ataques", (req, res) => {
+    //accedo a la variable que se envio en la url
+    const jugadorId = req.params.jugadorId || "";
+    const ataques = req.body.ataques || [];
+
+    const jugadorIndex = jugadores.findIndex(
+        (jugador) => jugadorId === jugador.id
+    );
+
+    if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].asignarAtaques(ataques);
+    }
+
+    res.end();
 });
 
 //que escuche las peticiones de nuestros clientes por medio de un puerto. listen nos permite agregar la capacidad de iniciar el servidor
