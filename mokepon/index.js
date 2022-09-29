@@ -105,7 +105,7 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
 });
 
 //mandar atauqes al servidor
-app.post("http://localhost:8080/mokepon/:jugadorId/ataques", (req, res) => {
+app.post("/mokepon/:jugadorId/ataques", (req, res) => {
     //accedo a la variable que se envio en la url
     const jugadorId = req.params.jugadorId || "";
     const ataques = req.body.ataques || [];
@@ -119,6 +119,14 @@ app.post("http://localhost:8080/mokepon/:jugadorId/ataques", (req, res) => {
     }
 
     res.end();
+});
+
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId);
+    res.send({
+        ataques: jugador.ataques || [],
+    });
 });
 
 //que escuche las peticiones de nuestros clientes por medio de un puerto. listen nos permite agregar la capacidad de iniciar el servidor
