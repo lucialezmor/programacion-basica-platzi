@@ -405,16 +405,8 @@ function pintarCanvas() {
 
     mokeponesEnemigos.forEach(function (mokepon) {
         mokepon.pintarMokepon();
+        revisarColision(mokepon);
     });
-
-    if (
-        mascotaJugadorObjeto.velocidadX !== 0 ||
-        mascotaJugadorObjeto.velocidadY !== 0
-    ) {
-        revisarColision(hipodogeEnemigo);
-        revisarColision(capipepoEnemigo);
-        revisarColision(ratigueyaEnemigo);
-    }
 }
 
 function enviarPosicion(x, y) {
