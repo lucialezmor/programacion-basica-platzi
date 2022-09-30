@@ -134,6 +134,7 @@ section {
     display: flex;
     justify-content: center;
     margin-bottom: var(--spacer);
+    /* user-select: none; */
 }
 
 #mensajes {
@@ -160,6 +161,7 @@ button {
     font-size: 1rem;
     text-align: center;
     transition: var(--transition);
+    user-select: none;
 }
 
 button:hover {

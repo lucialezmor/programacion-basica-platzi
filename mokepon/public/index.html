@@ -30,24 +30,35 @@
             <h2 class="subtitle">Recorre el mapa con tu Mokepon:</h2>
             <canvas id="mapa"> </canvas>
             <div id="botones-mover">
-                <button onmousedown="moveUp()" onmouseup="detenerMovimiento()">
+                <button
+                    ontouchstart="moveUp()"
+                    onmousedown="moveUp()"
+                    onmouseup="detenerMovimiento()"
+                    ontouchend="detenerMovimiento()"
+                >
                     ⬆
                 </button>
                 <button
                     onmousedown="moveRight()"
+                    ontouchstart="moveRight()"
                     onmouseup="detenerMovimiento()"
+                    ontouchend="detenerMovimiento()"
                 >
                     ➡
                 </button>
                 <button
                     onmousedown="moveDown()"
+                    ontouchstart="moveDown()"
                     onmouseup="detenerMovimiento()"
+                    ontouchend="detenerMovimiento()"
                 >
                     ⬇
                 </button>
                 <button
                     onmousedown="moveLeft()"
+                    ontouchstart="moveLeft()"
                     onmouseup="detenerMovimiento()"
+                    ontouchend="detenerMovimiento()"
                 >
                     ⬅
                 </button>
@@ -71,6 +82,6 @@
             </div>
         </section>
 
-        <script src="js/mokepon.js"></script>
+        <script src="mokepon.js"></script>
     </body>
 </html>

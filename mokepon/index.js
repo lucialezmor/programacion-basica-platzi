@@ -9,7 +9,9 @@ const cors = require("cors");
 
 //b)crea/almacena nuestra aplicacion. instancia del servidor que voy a estar utilizando
 const app = express();
-
+//en la carpeta public van todos los archvos estaticos que "el navegador puede entender"
+//para que el frontend funcione con un servidor tenemos que conectarlo con/desde un backend
+app.use(express.static("public"));
 //decirle a express que use cors
 app.use(cors());
 //como vamos a trabajar con peticiones tipo POST pare recibir datos de los users, activar peticiones que soporten json como parte de su juego. json y cors son funciones, por eso el ()
